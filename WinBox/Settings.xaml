@@ -1,0 +1,93 @@
+﻿    <phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives" x:Class="WinBox.Settings" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    DataContext="{Binding Settings, Source={StaticResource Locator}}"
+    >
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" BackgroundColor="{StaticResource AppBarBackground}" ForegroundColor="{StaticResource AppBarForeground}">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="_about" Text="about" Click="_about_Click" />
+            </shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarIconButton x:Name="_refresh" IconUri="/icons/appbar.refresh.rest.png" Text="refresh" Click="_refresh_Click"/>
+        	<shell:ApplicationBarIconButton x:Name="_logout" IconUri="/icons/appbar.door.leave.png" Text="logout" Click="_logout_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundColor}">
+        <!--Pivot Control-->
+        <controls:Pivot x:Name="pivot" Title="CLOUDY BOX" Foreground="{StaticResource HeaderTextColor}" Style="{StaticResource HomePageStyle}">
+            <controls:PivotItem Header="settings" >
+                <Grid Margin="10,0">
+                	<Grid.RowDefinitions>
+                		<RowDefinition Height="Auto"/>
+                		<RowDefinition Height="Auto"/>
+                		<RowDefinition Height="Auto"/>
+                	</Grid.RowDefinitions>
+					
+                    <telerikPrimitives:RadToggleSwitch x:Name="_exitConfirm"  VerticalAlignment="Top" Header="Confirm on exit" 
+                                                    IsChecked="{Binding ExitConfirmation, Mode=TwoWay}"   />
+                    <telerikPrimitives:RadToggleSwitch x:Name="_showFilesFirst"  VerticalAlignment="Top" Header="Show files first in a folder" 
+                    	IsChecked="{Binding ShowFilesFirst, Mode=TwoWay}"   Margin="12,12,12,0" Grid.Row="1"   />
+                    <telerikPrimitives:RadToggleSwitch  VerticalAlignment="Top" IsEnabled="False" Header="Auto upload - Comming soon" Margin="12,12,12,0" IsChecked="{Binding AutoUploadEnabled, Mode=TwoWay}" Grid.Row="2"/>
+                </Grid>
+            </controls:PivotItem>
+            <controls:PivotItem Header="{Binding LocalizedResources.Account, Source={StaticResource LocalizedStrings}}" Margin="14,28,10,0">
+                <Grid>
+                	<Grid.RowDefinitions>
+                		<RowDefinition Height="Auto"/>
+                		<RowDefinition Height="*"/>
+                	</Grid.RowDefinitions>
+                    <StackPanel DataContext="{Binding Account, Mode=OneWay}">
+                        <TextBlock Margin="8,8,8,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Text="{Binding display_name}" VerticalAlignment="Top" Foreground="{StaticResource DefaultForeGround}"/>
+                        <TextBlock Margin="8,0" Style="{StaticResource PhoneTextSubtleStyle}" TextWrapping="Wrap" Text="{Binding email}" Foreground="{StaticResource SecondaryForeground}" FontSize="26.667"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" DataContext="{Binding QuotaInformation}" Margin="0,20,0,0">
+                    	<TextBlock Margin="8,8,8,0" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap" Text="{Binding LocalizedResources.Usage, Source={StaticResource LocalizedStrings}}" Foreground="{StaticResource DefaultForeGround}"/>
+                        <ProgressBar x:Name="_usage" Height="28" Margin="0,0,0,0" Value="{Binding Value, Mode=OneWay}" Maximum="{Binding Maximum, Mode=OneWay}" Style="{StaticResource StatProgress}" Foreground="{x:Null}" Background="{x:Null}"/>
+                        <Grid Margin="0,8,0,0" HorizontalAlignment="Left" Width="456">
+                    		<Grid.RowDefinitions>
+                    			<RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                    		</Grid.RowDefinitions>
+                    		<Grid.ColumnDefinitions>
+                    			<ColumnDefinition Width="Auto"/>
+                    			<ColumnDefinition Width="*"/>
+                    		</Grid.ColumnDefinitions>
+
+                            <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Margin="8,0" Text="{Binding LocalizedResources.Used, Source={StaticResource LocalizedStrings}}" Grid.Row="0" Foreground="{StaticResource DefaultForeGround}" />
+                            <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Margin="0,0,8,0" Text="{Binding Used, Mode=OneWay}" Grid.Row="0" Grid.Column="1" TextAlignment="Right" Foreground="{StaticResource DefaultForeGround}"/>
+
+
+                            <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Margin="8,0" Text="{Binding LocalizedResources.Shared, Source={StaticResource LocalizedStrings}}" Grid.Row="1" Foreground="{StaticResource DefaultForeGround}" />
+                            <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Margin="0,0,8,0" Text="{Binding Shared, Mode=OneWay}" Grid.Row="1" Grid.Column="1" TextAlignment="Right" Foreground="{StaticResource DefaultForeGround}"/>
+
+                            <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Margin="8,0" Text="{Binding LocalizedResources.Remaining, Source={StaticResource LocalizedStrings}}" Grid.Row="2" Foreground="{StaticResource DefaultForeGround}" />
+                            <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Margin="0,0,8,0" Text="{Binding Remaining}" Grid.Row="2" Grid.Column="1" 
+                                       TextAlignment="Right" Foreground="{StaticResource DefaultForeGround}"/>
+
+                            <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Margin="8,0" Text="{Binding LocalizedResources.TotalQuota, Source={StaticResource LocalizedStrings}}" Grid.Row="3" Foreground="{StaticResource DefaultForeGround}" />
+                            <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Margin="0,0,8,0" Text="{Binding TotalQuota, Mode=OneWay}" Grid.Row="3" Grid.Column="1" TextAlignment="Right" Foreground="{StaticResource DefaultForeGround}"/>
+                        </Grid>
+                        <Button  Content="{Binding LocalizedResources.EmailReferral, Source={StaticResource LocalizedStrings}}" Margin="0,12,0,0" x:Name="_emailShare" Click="_emailShare_Click"/>
+                        <Button  Content="{Binding LocalizedResources.ShareReferral, Source={StaticResource LocalizedStrings}}" Margin="0" x:Name="_socialShare" Click="_socialShare_Click"/>
+                    </StackPanel>
+                </Grid>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" 
+             xmlns:vm="clr-namespace:WinBox.ViewModels" 
+             xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" 
+             xmlns:controlsPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls" 
+             xmlns:Utility="clr-namespace:WinBox.Utility" 
+             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+             xmlns:analytics="clr-namespace:WinBox.Analytics" 
+             xmlns:Telerik_Windows_Controls_ImageButton="clr-namespace:Telerik.Windows.Controls.ImageButton;assembly=Telerik.Windows.Controls.Primitives" 
+             xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:Telerik_Windows_Controls_PhoneTextBox="clr-namespace:Telerik.Windows.Controls.PhoneTextBox;assembly=Telerik.Windows.Controls.Primitives" 
+             x:Class="WinBox.App">
+    <!--Application Resources-->
+    <Application.Resources>
+        <ResourceDictionary>
+            <Utility:LocalizedStrings x:Key="LocalizedStrings" />
+            <vm:ViewModelLocator x:Key="Locator" />
+            
+            <Color x:Key="AppBarBackground">#FFDEDFDE</Color>
+            <Color x:Key="AppBarForeground">#FF1F75CC</Color>
+            <SolidColorBrush x:Key="AppBarBackgroundBrush">#FFDEDFDE</SolidColorBrush>
+            <SolidColorBrush x:Key="BackgroundColor">#FFFFFFFF</SolidColorBrush>
+            <SolidColorBrush x:Key="DefaultForeGround">#FF000000</SolidColorBrush>
+            <SolidColorBrush x:Key="SecondaryForeground">#FF888888</SolidColorBrush>
+            <SolidColorBrush x:Key="HeaderTextColor">#FF1F75CC</SolidColorBrush>
+            <SolidColorBrush x:Key="LightBlueColor" Color="#FFF0F9FF" />
+            <SolidColorBrush x:Key="LightBlueLine" Color="#FF82CFFA" />
+            <Utility:RelativeDateConverter x:Key="RelativeDateCoverter" />
+            <Style x:Key="SubMetaDataTitle" BasedOn="{StaticResource PhoneTextNormalStyle}" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource SecondaryForeground}" />
+            </Style>
+            <Style x:Key="MetaDataHeaderStyle" BasedOn="{StaticResource PhoneTextExtraLargeStyle}" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="Black" />
+            </Style>
+            <Style x:Key="StatProgress" TargetType="ProgressBar">
+                <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}" />
+                <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}" />
+                <Setter Property="Maximum" Value="100" />
+                <Setter Property="IsHitTestVisible" Value="False" />
+                <Setter Property="Padding" Value="{StaticResource PhoneHorizontalMargin}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ProgressBar">
+                            <Grid Height="20">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Determinate" />
+                                        <VisualState x:Name="Indeterminate">
+                                            <Storyboard Duration="00:00:04.4" RepeatBehavior="Forever">
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="DeterminateRoot">
+                                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                                        <DiscreteObjectKeyFrame.Value>
+                                                            <Visibility>Collapsed</Visibility>
+                                                        </DiscreteObjectKeyFrame.Value>
+                                                    </DiscreteObjectKeyFrame>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Grid x:Name="DeterminateRoot" Margin="12,0" Visibility="Visible">
+                                    <Rectangle x:Name="ProgressBarTrack" Height="15" Fill="#FFEEEEEE" />
+                                    <Rectangle x:Name="ProgressBarIndicator" HorizontalAlignment="Left" Height="15" Fill="#FF508AB9" Stroke="#FF5D9FD5" />
+                                </Grid>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="HomePageStyle" TargetType="controls:Pivot">
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Foreground" Value="{StaticResource HeaderTextColor}" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <Grid />
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="controls:Pivot">
+                            <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" MinHeight="50" />
+                                    <RowDefinition Height="Auto" MinHeight="74" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Rectangle Fill="{StaticResource LightBlueColor}" Margin="-1,-1,-1,0" Stroke="{StaticResource LightBlueLine}" />
+                                <Grid Background="{TemplateBinding Background}" CacheMode="BitmapCache" Grid.RowSpan="3" />
+                                <ContentPresenter ContentTemplate="{TemplateBinding TitleTemplate}" Content="{TemplateBinding Title}" Margin="24,0,0,0" VerticalAlignment="Center" />
+                                <controlsPrimitives:PivotHeadersControl x:Name="HeadersListElement" Grid.Row="1" />
+                                <ItemsPresenter x:Name="PivotItemPresenter" Margin="{TemplateBinding Padding}" Grid.Row="2" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="HeaderStyle" TargetType="ContentControl">
+                <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}"/>
+                <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}"/>
+                <Setter Property="Padding" Value="0,0,0,8"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+    
+    <Application.ApplicationLifetimeObjects>
+        <!--Required object that handles lifetime events for the application-->
+        <shell:PhoneApplicationService Launching="Application_Launching" Closing="Application_Closing" Activated="Application_Activated" Deactivated="Application_Deactivated" />
+        <!--<analytics:GoogleAnalyticsService WebPropertyId="UA-31832713-1" />-->
+    </Application.ApplicationLifetimeObjects>
+</Application>

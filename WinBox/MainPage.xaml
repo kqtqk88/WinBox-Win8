@@ -1,0 +1,86 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:tdc="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+    xmlns:tp="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+    xmlns:GalaSoft_MvvmLight_Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP71"
+    xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core" x:Class="WinBox.MainPage"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
+    SupportedOrientations="Portrait" Orientation="Portrait" 
+   >
+
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="MetaDataTemplate">
+            <Grid Width="440" Margin="0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="64"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <tp:RadContextMenu.ContextMenu>
+                    <tp:RadContextMenu x:Name="_contextMenu" OpenGesture="Hold" Opened="_contextMenu_Opened">
+                        <tp:RadContextMenuItem Content="{Binding LocalizedResources.Download, Source={StaticResource LocalizedStrings}}" Visibility="{Binding DownloadVisible}" Command="{Binding Download}" />
+                        <tp:RadContextMenuItem Content="{Binding LocalizedResources.GetLink, Source={StaticResource LocalizedStrings}}" Command="{Binding GetLink}" />
+                        <tp:RadContextMenuItem Content="{Binding LocalizedResources.Delete, Source={StaticResource LocalizedStrings}}" Command="{Binding Delete}" />
+                        <tp:RadContextMenuItem Content="{Binding LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}}" Command="{Binding PinToStart}" Visibility="{Binding PinVisible}" />
+                    </tp:RadContextMenu>
+                </tp:RadContextMenu.ContextMenu>
+                <Image Height="64" Width="64" Source="{Binding Thumb}" Stretch="UniformToFill"  />
+                <TextBlock Text="{Binding MetaData.Name, Mode=OneWay}" VerticalAlignment="Center" Margin="12,0,0,0" 
+                               Style="{StaticResource MetaDataHeaderStyle}" Grid.Column="1" />
+            </Grid>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
+    <phone:PhoneApplicationPage.DataContext>
+        <Binding Path="Main" Source="{StaticResource Locator}"/>
+    </phone:PhoneApplicationPage.DataContext>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" BackgroundColor="{StaticResource AppBarBackground}" ForegroundColor="{StaticResource AppBarForeground}"/>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="{StaticResource BackgroundColor}" >
+        <controls:Pivot Title="CLOUDY BOX"  Style="{StaticResource HomePageStyle}">
+            <controls:PivotItem Header="{Binding LocalizedResources.MyBox, Source={StaticResource LocalizedStrings}}" Margin="12,28,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="474*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <tdc:RadJumpList ItemTemplate="{StaticResource MetaDataTemplate}" 
+                                                 x:Name="_filesList" 
+                                                 ItemsSource="{Binding ListOfFiles}" 
+                                                 Margin="0,0,0,0"
+                                                 Foreground="#FF212021"  VerticalAlignment="Stretch"
+                                                 HorizontalContentAlignment="Stretch">
+                        <tdc:RadJumpList.ItemAddedAnimation>
+                            <telerik:RadFadeAnimation  StartOpacity="0" EndOpacity="1" Duration="0:0:0.5" InitialDelay="0:0:1.2">
+                                <telerik:RadFadeAnimation.Easing>
+                                    <CubicEase EasingMode="EaseOut" />
+                                </telerik:RadFadeAnimation.Easing>
+                            </telerik:RadFadeAnimation>
+                        </tdc:RadJumpList.ItemAddedAnimation>
+
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="ItemTap">
+                                <GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding NavigateCommand, Mode=OneWay}" CommandParameter="{Binding SelectedValue, ElementName=_filesList}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </tdc:RadJumpList>
+                </Grid>
+            </controls:PivotItem>
+        </controls:Pivot>
+        <tp:RadBusyIndicator
+            Foreground="{StaticResource HeaderTextColor}"  Content="{Binding LocalizedResources.Loading, Source={StaticResource LocalizedStrings}}"
+            Background="#E5FFFFFF" IsRunning="{Binding IsLoading}" AnimationStyle="AnimationStyle7" />
+    </Grid>
+
+</phone:PhoneApplicationPage>

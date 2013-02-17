@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ConnectionErrorMessage" xml:space="preserve">
+    <value>Proszę wyłączyć tryb samolotowy lub upewnij się, że masz połączenie z siecią Wi-Fi lub sieci komórkowej</value>
+  </data>
+  <data name="ConnectionErrorTitle" xml:space="preserve">
+    <value>Brak dostępu do sieci</value>
+  </data>
+  <data name="DeleteConfirmation" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć?</value>
+  </data>
+  <data name="DeleteConfirmationTitle" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="DeleteFileError" xml:space="preserve">
+    <value>działania jest w tym momencie niedostępne</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ExitConfirmation" xml:space="preserve">
+    <value>Czy na pewno chcesz wyjść?</value>
+  </data>
+  <data name="ExitTitle" xml:space="preserve">
+    <value>Wyjście</value>
+  </data>
+  <data name="GenericErrorMessage" xml:space="preserve">
+    <value>Jest wystąpił nieoczekiwany błąd, spróbuj ponownie.</value>
+  </data>
+  <data name="ImageSaved" xml:space="preserve">
+    <value>Obraz został zapisany w bibliotece</value>
+  </data>
+  <data name="LoginNotPossible" xml:space="preserve">
+    <value>Nie można zalogować się w tej chwili</value>
+  </data>
+  <data name="LogOutMessage" xml:space="preserve">
+    <value>Czy jesteś pewien, chcesz się wylogować?</value>
+  </data>
+  <data name="LogOutTitle" xml:space="preserve">
+    <value>Wyloguj się</value>
+  </data>
+  <data name="NoResultsFound" xml:space="preserve">
+    <value>Nic nie znaleziono!</value>
+  </data>
+  <data name="NoSpaceAvailable" xml:space="preserve">
+    <value>Brak wolnego miejsca w celu utworzenia folderu</value>
+  </data>
+  <data name="Pin" xml:space="preserve">
+    <value>przypnij</value>
+  </data>
+  <data name="SearchTitle" xml:space="preserve">
+    <value>Wyszukaj</value>
+  </data>
+  <data name="SelectImageUpload" xml:space="preserve">
+    <value>Wybierz zdjęcie do przesłania</value>
+  </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>Nie można przetworzyć żądanie teraz</value>
+  </data>
+  <data name="ShareFileError" xml:space="preserve">
+    <value>Akcji jest w tej chwili dostępny</value>
+  </data>
+  <data name="SuccessTitle" xml:space="preserve">
+    <value>Sukces</value>
+  </data>
+  <data name="UnableToDoanload" xml:space="preserve">
+    <value>Nie można pobrać obraz</value>
+  </data>
+  <data name="Unpin" xml:space="preserve">
+    <value>usunąć przypnij</value>
+  </data>
+  <data name="UploadTitle" xml:space="preserve">
+    <value>Prześlij</value>
+  </data>
+  <data name="UserInfoError" xml:space="preserve">
+    <value>Nie można uzyskać nowe informacje użytkownika</value>
+  </data>
+  <data name="ExitUploadConfirmation" xml:space="preserve">
+    <value>Czy jesteś pewien, że chcesz nawigować dala od stronie upload? To może przerwać obecny postęp wysyłania.</value>
+  </data>
+  <data name="FileExtensionError" xml:space="preserve">
+    <value>Rozszerzenie pliku jest ignorowanych Dropbox jest</value>
+  </data>
+  <data name="FileNotFoundDelete" xml:space="preserve">
+    <value>Nie znaleziono pliku, nie można usunąć plik</value>
+  </data>
+  <data name="FileNotFoundShare" xml:space="preserve">
+    <value>Nie znaleziono pliku, nie można udostępnić plik</value>
+  </data>
+  <data name="FolderCreated" xml:space="preserve">
+    <value>'{0}' Utworzony pomyślnie</value>
+    <comment>0 - Folder name</comment>
+  </data>
+  <data name="FolderCreatedTitle" xml:space="preserve">
+    <value>Folder utworzony</value>
+  </data>
+  <data name="FolderExist" xml:space="preserve">
+    <value>Folder już istnieje</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>więcej</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>Utwórz nowe konto Dropbox</value>
+  </data>
+  <data name="CreateNewFolder" xml:space="preserve">
+    <value>utworzyć nowy folder</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>usunąć</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>pobranie</value>
+  </data>
+  <data name="GetLink" xml:space="preserve">
+    <value>uzyskać link</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>login</value>
+  </data>
+  <data name="MyBox" xml:space="preserve">
+    <value>moje pudełko</value>
+  </data>
+  <data name="PinToStart" xml:space="preserve">
+    <value>przypnij do ekranu startowego</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>odświeżać</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>wyszukaj</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>ustawienia</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>załadować</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Załadunek...</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>anuluj</value>
+  </data>
+  <data name="CreateFolder" xml:space="preserve">
+    <value>utworzyć folder</value>
+  </data>
+  <data name="CreateIn" xml:space="preserve">
+    <value>stworzyć w</value>
+  </data>
+  <data name="FolderName" xml:space="preserve">
+    <value>nazwa folderu</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>ok</value>
+  </data>
+  <data name="SearchDropbox" xml:space="preserve">
+    <value>Wyszukaj Dropbox</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Wyszukiwanie...</value>
+  </data>
+  <data name="SearchPageTitle" xml:space="preserve">
+    <value>WYSZUKAJ</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>konto</value>
+  </data>
+  <data name="EmailLink" xml:space="preserve">
+    <value>e-mail łącze</value>
+  </data>
+  <data name="EmailReferral" xml:space="preserve">
+    <value>email skierowanie łącze</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>wyloguj się</value>
+  </data>
+  <data name="Referesh" xml:space="preserve">
+    <value>odświeżać</value>
+  </data>
+  <data name="Remaining" xml:space="preserve">
+    <value>pozostały</value>
+  </data>
+  <data name="Shared" xml:space="preserve">
+    <value>shared</value>
+  </data>
+  <data name="SharePublic" xml:space="preserve">
+    <value>akcji do publicznego</value>
+  </data>
+  <data name="ShareReferral" xml:space="preserve">
+    <value>udział skierowanie łącze</value>
+  </data>
+  <data name="TextLink" xml:space="preserve">
+    <value>link tekstowy</value>
+  </data>
+  <data name="TotalQuota" xml:space="preserve">
+    <value>łączny kwota</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>używanie</value>
+  </data>
+  <data name="Used" xml:space="preserve">
+    <value>używany</value>
+  </data>
+</root>
