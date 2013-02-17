@@ -152,7 +152,8 @@ namespace WinBox.ViewModels
 
             if (data.MetaData.Is_Dir)
             {
-                string path = string.Format("/FolderPage.xaml?path={0}&icon={1}", data.MetaData.Path, data.MetaData.Icon);
+                string nav = Utilities.GetNavPath(data.MetaData.Path);
+                string path = string.Format("/FolderPage.xaml?path={0}&icon={1}", nav, data.MetaData.Icon);
                 _navigationService.Navigate(new Uri(path, UriKind.Relative));
             }
             else if (data.MetaData.Thumb_Exists)
@@ -166,6 +167,8 @@ namespace WinBox.ViewModels
                 _navigationService.Navigate(new Uri("/FilePage.xaml", UriKind.Relative));
             }
         }
+
+
 
         void RefreshMessengerHandler(IRestResponse restResponse)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using JeffWilcox.FourthAndMayor;
 
 namespace WinBox.Utility
@@ -10,6 +11,12 @@ namespace WinBox.Utility
         {
             GlobalLoading.Instance.IsLoading = show;
             GlobalLoading.Instance.SetMessage(message);
+        }
+
+        public static string GetNavPath(string path)
+        {
+            var temp = path.Replace("/", string.Empty);
+            return string.Format("/{0}", HttpUtility.UrlEncode(temp));
         }
 
         public static string GetCacheKeyName(string path)
