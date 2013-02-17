@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Windows.Controls;
 using DropNet.Models;
 using GalaSoft.MvvmLight.Messaging;
@@ -6,6 +7,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using WinBox.Model;
 using WinBox.Resources;
+using WinBox.Utility;
 using WinBox.ViewModels;
 
 namespace WinBox
@@ -22,7 +24,7 @@ namespace WinBox
 
         void CreateApplicationBar()
         {
-            var okButton = new ApplicationBarIconButton(new Uri("/icons/appbar.check.rest.png", UriKind.Relative)) { Text = Labels.OK, IsEnabled = false};
+            var okButton = new ApplicationBarIconButton(new Uri("/icons/appbar.check.rest.png", UriKind.Relative)) { Text = Labels.OK, IsEnabled = false };
             okButton.Click += _ok_Click;
             var cancelButton = new ApplicationBarIconButton(new Uri("/Toolkit.Content/ApplicationBar.Cancel.png", UriKind.Relative)) { Text = Labels.Cancel };
             cancelButton.Click += _cancel_Click;
@@ -50,7 +52,7 @@ namespace WinBox
 
         void NavigateToNewFolder(MetaData metadata)
         {
-            string path = string.Format("/FolderPage.xaml?path={0}&removebackentry={1}", metadata.Path, 1);
+            string path = string.Format("/FolderPage.xaml?path={0}&removebackentry={1}", Utilities.GetNavPath(metadata.Path), 1);
             NavigationService.Navigate(new Uri(path, UriKind.Relative));
         }
 
