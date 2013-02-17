@@ -88,10 +88,12 @@ namespace WinBox.ViewModels
 
             if (option == ShareOption.Social)
             {
-                var task = new ShareLinkTask();
-                task.LinkUri = new Uri(Account.referral_link);
-                task.Message = "Join the awesome cloud storage service.";
-                task.Title = "Dropbox register";
+                var task = new ShareLinkTask
+                    {
+                        LinkUri = new Uri(Account.referral_link),
+                        Message = "Join the awesome cloud storage service.",
+                        Title = "Dropbox register"
+                    };
                 task.Show();
             }
         }
@@ -196,7 +198,7 @@ namespace WinBox.ViewModels
 
         void RestoreAccountInformation()
         {
-            AccountInfo account = null; Cache.Current.Get<AccountInfo>("AccountInfo");
+            var account = Cache.Current.Get<AccountInfo>("AccountInfo");
             if (account != null)
             {
                 QuotaInformation = new Quota(account.quota_info);
