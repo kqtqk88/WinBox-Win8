@@ -98,7 +98,7 @@ namespace WinBox
         /// </summary>
         public App()
         {
-            ApplicationUsageHelper.Init("1.8.2.0");
+            ApplicationUsageHelper.Init("1.8.2.1");
 
             //Global exception handling
             var diagnostics = new RadDiagnostics { EmailTo = "prshntvc@gmail.com" };

@@ -60,6 +60,10 @@
     <!-- Supported types are "text" and "xaml", where text is nicely formatted automatically, and XAML is handled by the built-in XamlReader -->
     <Item Title="history"
           Type="text">
+
+      1.8.2.1
+      - Minor bug fixes
+      
       1.8.2.0
       - Navigate between images by swiping
       - Disable exit confirmation
