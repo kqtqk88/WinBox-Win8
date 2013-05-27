@@ -1,6 +1,8 @@
-﻿using DropNet.Exceptions;
+﻿using System.Diagnostics;
+using DropNet.Exceptions;
 using DropNet.Models;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Phone.Scheduler;
 using Microsoft.Phone.Tasks;
 using System;
 using System.IO.IsolatedStorage;
@@ -18,6 +20,11 @@ namespace WinBox.ViewModels
         ICommand _logOutCommand;
         ICommand _shareReferralCommand;
         AccountInfo _account;
+        private bool _autoUploadEnabled;
+
+        ResourceIntensiveTask resourceIntensiveTask;
+        string resourceIntensiveTaskName = "ResourceIntensiveAgent";
+
 
         /// <summary>
         /// Gets the page loaded command.
@@ -35,7 +42,59 @@ namespace WinBox.ViewModels
             }
         }
 
-        public bool AutoUploadEnabled { get; set; }
+        public bool AutoUploadEnabled
+        {
+            get { return _autoUploadEnabled; }
+            set
+            {
+                _autoUploadEnabled = value;
+                StartAutoUpload(value);
+            }
+        }
+
+        private void StartAutoUpload(bool enabled)
+        {
+            resourceIntensiveTask = ScheduledActionService.Find(resourceIntensiveTaskName) as ResourceIntensiveTask;
+
+            if (resourceIntensiveTask != null)
+            {
+                RemoveAgent(resourceIntensiveTaskName);
+            }
+
+            if (!enabled)
+            {
+                return;
+            }
+
+            resourceIntensiveTask = new ResourceIntensiveTask(resourceIntensiveTaskName)
+                {
+                    Description = "This is Cloudy Box autoupload service"
+                };
+
+            try
+            {
+                ScheduledActionService.Add(resourceIntensiveTask);
+#if DEBUG_AGENT 
+                ScheduledActionService.LaunchForTest(resourceIntensiveTaskName, TimeSpan.FromSeconds(10));
+#endif
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        private void RemoveAgent(string name)
+        {
+            try
+            {
+                ScheduledActionService.Remove(name);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
 
         public ICommand ShareReferralCommand
         {
@@ -77,6 +136,11 @@ namespace WinBox.ViewModels
 
         private void ShareReferralHandler(ShareOption option)
         {
+            if (Account == null)
+            {
+                return;
+            }
+
             if (option == ShareOption.Email)
             {
                 var task = new EmailComposeTask();

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{4b616061-a8d2-498f-9bf0-82cadfe10a01}" Title="Cloudy Box" RuntimeType="Silverlight" Version="1.8.2.1" Genre="apps.normal" Author="Prashant Cholachagudda" Description="A Dropbox client" Publisher="Prashant Cholachagudda" PublisherID="{acd8d6f7-ff7c-4a15-8cdf-a417d4bd917e}">
+  <App xmlns="" ProductID="{4b616061-a8d2-498f-9bf0-82cadfe10a01}" Title="Cloudy Box - DEBUG" RuntimeType="Silverlight" Version="1.8.2.1" Genre="apps.normal" Author="Prashant Cholachagudda" Description="A Dropbox client" Publisher="Prashant Cholachagudda" PublisherID="{acd8d6f7-ff7c-4a15-8cdf-a417d4bd917e}">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />

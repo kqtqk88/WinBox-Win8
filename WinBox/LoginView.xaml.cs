@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Navigation;
 using DropNet;
 using DropNet.Models;
 using Microsoft.Phone.Controls;
@@ -14,7 +15,7 @@ namespace WinBox
         public LoginView()
         {
             InitializeComponent();
-            
+
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -23,8 +24,13 @@ namespace WinBox
 
             _browser.Navigating += _browser_Navigating;
             _browser.Navigated += _browser_Navigated;
+            _browser.LoadCompleted += BrowserOnLoadCompleted;
 
-            
+            if (_browser.Source != null && _browser.Source.AbsoluteUri.Contains("verify_code"))
+            {
+                return;
+            }
+
             _client.GetTokenAsync(userLogin =>
                                       {
                                           _userLogin = userLogin;
@@ -35,8 +41,18 @@ namespace WinBox
                                       error => MessageBox.Show(Labels.ConnectionErrorMessage, Labels.ConnectionErrorTitle, MessageBoxButton.OK));
         }
 
-        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        private void BrowserOnLoadCompleted(object sender, NavigationEventArgs navigationEventArgs)
         {
+            Utilities.ShowProgressIndicator(false);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            _browser.Navigating -= _browser_Navigating;
+            _browser.Navigated -= _browser_Navigated;
+            _browser.LoadCompleted -= BrowserOnLoadCompleted;
+
+
             Utilities.ShowProgressIndicator(false);
             base.OnNavigatedFrom(e);
         }
@@ -67,7 +83,7 @@ namespace WinBox
         {
             var appSettings = IsolatedStorageSettings.ApplicationSettings;
             const string userToken = "userToken";
-            
+
             if (appSettings.Contains(userToken))
             {
                 appSettings.Remove(userToken);
@@ -77,7 +93,7 @@ namespace WinBox
             appSettings.Save();
         }
 
-        private void _browser_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        private void _browser_Navigated(object sender, NavigationEventArgs e)
         {
             Utilities.ShowProgressIndicator(false);
         }

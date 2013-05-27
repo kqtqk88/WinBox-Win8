@@ -40,7 +40,7 @@
                                                     IsChecked="{Binding ExitConfirmation, Mode=TwoWay}"   />
                     <telerikPrimitives:RadToggleSwitch x:Name="_showFilesFirst"  VerticalAlignment="Top" Header="Show files first in a folder" 
                     	IsChecked="{Binding ShowFilesFirst, Mode=TwoWay}"   Margin="12,12,12,0" Grid.Row="1"   />
-                    <telerikPrimitives:RadToggleSwitch  VerticalAlignment="Top" IsEnabled="False" Header="Auto upload - Comming soon" Margin="12,12,12,0" IsChecked="{Binding AutoUploadEnabled, Mode=TwoWay}" Grid.Row="2"/>
+                    <telerikPrimitives:RadToggleSwitch  VerticalAlignment="Top" Header="Auto upload - Comming soon" Margin="12,12,12,0" IsChecked="{Binding AutoUploadEnabled, Mode=TwoWay}" Grid.Row="2"/>
                 </Grid>
             </controls:PivotItem>
             <controls:PivotItem Header="{Binding LocalizedResources.Account, Source={StaticResource LocalizedStrings}}" Margin="14,28,10,0">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Linq;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 
@@ -28,8 +29,7 @@ namespace WinBox.Utility
 
         public void GoBack()
         {
-            if (EnsureMainFrame()
-                && _mainFrame.CanGoBack)
+            if (EnsureMainFrame() && _mainFrame.CanGoBack && _mainFrame.BackStack.Count() > 0)
             {
                 _mainFrame.GoBack();
             }
